@@ -19,12 +19,13 @@ var counter = 0;
 // createCanvas(2500, .7, .6, 100);
 // createCanvas(arg1, arg2, arg3, arg4);
 
-let frame_speed = 1000 / 24;
+// let frame_speed = 1000 / 24;
+let frame_speed = 1000 / 60;
 
 function pCreateCanvas() {
     document.body.innerHTML = "";
     createCanvas(arg1, arg2, arg3, arg4);
-    arg1 += 100;
+    arg1 += 10;
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
             resolve("DONE TIMEOUT")
