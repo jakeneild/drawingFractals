@@ -23,7 +23,8 @@ let frame_speed = 1000 / 24;
 
 function pCreateCanvas(resolve, reject) {
     document.body.innerHTML = "";
-    createCanvas(arg1 + 100, arg2, arg3, arg4);
+    createCanvas(arg1, arg2, arg3, arg4);
+    setTimeout(() => resolve("done"), frame_speed)
 }
 
 
@@ -31,15 +32,21 @@ async function main() {
     let promise = new Promise(function(resolve, reject) {
         // the function is executed automatically when the promise is constructed
 
-        createCanvas(arg1, arg2, arg3, arg4)
+        createCanvas(arg1, arg2, arg3, arg4);
         // after 1 second signal that the job is done with the result "done"
         setTimeout(() => resolve("done"), frame_speed);
     })
     promise.then(data => {
-        console.log("READY")
-        let p1 = new Promise(pCreateCanvas)
+        console.log("READY");
+        arg1 += 100;
+        let p1 = new Promise(pCreateCanvas);
         p1.then(data2 => {
             console.log("Ready 2")
+            arg1 += 100
+            let p2 = new Promise(pCreateCanvas);
+            p2.then(data3 => {
+                console.log("Ready 3");
+            })
         })
     });
 }
