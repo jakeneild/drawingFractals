@@ -24,8 +24,14 @@ let frame_speed = 1000 / 24;
 function pCreateCanvas() {
     document.body.innerHTML = "";
     createCanvas(arg1, arg2, arg3, arg4);
+    arg1 += 100;
     return new Promise(function (resolve, reject) {
-        setTimeout(() => resolve("DONE TIMEOUT"), frame_speed);
+        setTimeout(() => {
+            resolve("DONE TIMEOUT")
+            if (arg1 <= 3000) {
+                pCreateCanvas()
+            }
+        }, frame_speed);
     })
 }
 
