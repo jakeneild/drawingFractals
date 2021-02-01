@@ -20,7 +20,7 @@ var counter = 0;
 // createCanvas(arg1, arg2, arg3, arg4);
 
 // let frame_speed = 1000 / 24;
-let frame_speed = 1000 / 60;
+let frame_speed = 1000 / 120;
 
 function pCreateCanvas() {
     document.body.innerHTML = "";
