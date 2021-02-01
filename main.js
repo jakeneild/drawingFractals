@@ -80,8 +80,10 @@ function createCanvas(a, b, c, d){
     var panY = c; //.6
 
     var myCanvas = document.createElement("canvas");
+    // myCanvas.width=600;
+    // myCanvas.height=600;
     myCanvas.width=600;
-    myCanvas.height=600;
+    myCanvas.height=100;
     document.body.appendChild(myCanvas);
     var ctx = myCanvas.getContext("2d");
 
