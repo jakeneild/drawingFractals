@@ -6,65 +6,27 @@ var arg3 = .6;
 var arg4 = 100;
 var counter = 0;
 
-// for(i = 0; i < 2; i++){  //can't get this working smoothly.  Maybe my computer just isn't powerful enough?
-//     arg1 = arg1 + 100;
-//     //arg2 = arg2 - .5;
-//     //arg3 = arg3 + .5;
-//     setTimeout(function() {
-//         document.body.innerHTML = "";
-//         createCanvas(arg1, arg2, arg3, arg4);
-//     }, delayInMilliseconds);
-// }
-
-// createCanvas(2500, .7, .6, 100);
-// createCanvas(arg1, arg2, arg3, arg4);
-
-// let frame_speed = 1000 / 24;
-let frame_speed = 1000 / 120;
+let frame_speed = 1000 / 24;
+// let frame_speed = 1000 / 120;
 
 function pCreateCanvas() {
     document.body.innerHTML = "";
     createCanvas(arg1, arg2, arg3, arg4);
-    arg1 += 10;
+    arg1 += 1;
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
             resolve("DONE TIMEOUT")
-            if (arg1 <= 3000) {
+            if (arg1 < 3000) {
+                // Recursivity. Keep calling the same function untill arg1 gets to 3000
                 pCreateCanvas()
             }
         }, frame_speed);
-    })
+    });
 }
 
 
 async function main() {
     pCreateCanvas()
-        .then(d => {
-            console.log("done");
-            console.log(d);
-        })
-    /*
-    let promise = new Promise(function(resolve, reject) {
-        // the function is executed automatically when the promise is constructed
-
-        createCanvas(arg1, arg2, arg3, arg4);
-        // after 1 second signal that the job is done with the result "done"
-        setTimeout(() => resolve("done"), frame_speed);
-    })
-    promise.then(data => {
-        console.log("READY");
-        arg1 += 100;
-        let p1 = new Promise(pCreateCanvas);
-        p1.then(data2 => {
-            console.log("Ready 2")
-            arg1 += 100
-            let p2 = new Promise(pCreateCanvas);
-            p2.then(data3 => {
-                console.log("Ready 3");
-            })
-        })
-    });
-    */
 }
 
 main()
