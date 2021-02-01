@@ -19,12 +19,23 @@ var counter = 0;
 // createCanvas(2500, .7, .6, 100);
 // createCanvas(arg1, arg2, arg3, arg4);
 
+// function(resolve, reject) {
+//     document.body.innerHTML = "";
+//     createCanvas(arg1, arg2, arg3, arg4);
+// }
+
 
 async function main() {
-    createCanvas(arg1, arg2, arg3, arg4)
-    await setTimeout(() => {
-        console.log("timeout")
-    }, 1000)
+    let promise = new Promise(function(resolve, reject) {
+        // the function is executed automatically when the promise is constructed
+
+        createCanvas(arg1, arg2, arg3, arg4)
+        // after 1 second signal that the job is done with the result "done"
+        setTimeout(() => resolve("done"), 1000);
+    })
+    promise.then(data => {
+        console.log("READY")
+    });
 }
 
 main()
