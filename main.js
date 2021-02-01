@@ -19,10 +19,12 @@ var counter = 0;
 // createCanvas(2500, .7, .6, 100);
 // createCanvas(arg1, arg2, arg3, arg4);
 
-// function(resolve, reject) {
-//     document.body.innerHTML = "";
-//     createCanvas(arg1, arg2, arg3, arg4);
-// }
+let frame_speed = 1000 / 24;
+
+function pCreateCanvas(resolve, reject) {
+    document.body.innerHTML = "";
+    createCanvas(arg1 + 100, arg2, arg3, arg4);
+}
 
 
 async function main() {
@@ -31,10 +33,14 @@ async function main() {
 
         createCanvas(arg1, arg2, arg3, arg4)
         // after 1 second signal that the job is done with the result "done"
-        setTimeout(() => resolve("done"), 1000);
+        setTimeout(() => resolve("done"), frame_speed);
     })
     promise.then(data => {
         console.log("READY")
+        let p1 = new Promise(pCreateCanvas)
+        p1.then(data2 => {
+            console.log("Ready 2")
+        })
     });
 }
 
